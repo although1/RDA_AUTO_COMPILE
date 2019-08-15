@@ -57,6 +57,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -162,7 +164,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.label7.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(119, 139);
+            this.label7.Location = new System.Drawing.Point(127, 125);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 16);
             this.label7.TabIndex = 10;
@@ -173,7 +175,7 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.label8.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(476, 139);
+            this.label8.Location = new System.Drawing.Point(476, 125);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(88, 16);
             this.label8.TabIndex = 11;
@@ -246,7 +248,7 @@
             // 
             this.textBox8.Location = new System.Drawing.Point(397, 556);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(291, 21);
+            this.textBox8.Size = new System.Drawing.Size(314, 21);
             this.textBox8.TabIndex = 20;
             this.textBox8.Text = "_IRCVT00BF_KPD_LUCKY_JEDIA_20190813";
             // 
@@ -287,7 +289,7 @@
             // 
             this.textBox11.Location = new System.Drawing.Point(397, 641);
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(291, 21);
+            this.textBox11.Size = new System.Drawing.Size(314, 21);
             this.textBox11.TabIndex = 27;
             this.textBox11.Text = "_IRCVT00BF_KPD_LUCKY_VESA_20190813";
             // 
@@ -295,7 +297,7 @@
             // 
             this.textBox10.Location = new System.Drawing.Point(397, 614);
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(291, 21);
+            this.textBox10.Size = new System.Drawing.Size(314, 21);
             this.textBox10.TabIndex = 28;
             this.textBox10.Text = "_IRCVT00BF_KPD_LUCKY_MIRROR_VESA_20190813";
             // 
@@ -303,7 +305,7 @@
             // 
             this.textBox9.Location = new System.Drawing.Point(397, 586);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(291, 21);
+            this.textBox9.Size = new System.Drawing.Size(314, 21);
             this.textBox9.TabIndex = 29;
             this.textBox9.Text = "_IRCVT00BF_KPD_LUCKY_MIRROR_JEDIA_20190813";
             // 
@@ -311,7 +313,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Lime;
             this.button1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(294, 681);
+            this.button1.Location = new System.Drawing.Point(309, 405);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 23);
             this.button1.TabIndex = 30;
@@ -321,28 +323,49 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(47, 172);
+            this.richTextBox1.Location = new System.Drawing.Point(47, 158);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(254, 364);
+            this.richTextBox1.Size = new System.Drawing.Size(254, 378);
             this.richTextBox1.TabIndex = 32;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(397, 172);
+            this.richTextBox2.Location = new System.Drawing.Point(416, 158);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(259, 364);
+            this.richTextBox2.Size = new System.Drawing.Size(259, 378);
             this.richTextBox2.TabIndex = 33;
             this.richTextBox2.Text = "AUO_T420HW04_V0_1920X1080\nCMO_M185B1_L02_1366X768\nCMO_M220Z1_L03_1680X1050\nLP154W" +
     "X4_TLB4_1280X800\nLTM170W1_L02_1280X768\nLTN170WU_L02_1920X1200\nSAM20_LTM200KT10_1" +
     "600X900\n05_GENERAL_1440X900";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(325, 354);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 12);
+            this.label17.TabIndex = 35;
+            this.label17.Text = "4_3_NUMBER";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(319, 306);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(77, 12);
+            this.label18.TabIndex = 37;
+            this.label18.Text = "TOTAL_NUMBER";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(692, 494);
+            this.ClientSize = new System.Drawing.Size(723, 673);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.button1);
@@ -412,6 +435,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }
 

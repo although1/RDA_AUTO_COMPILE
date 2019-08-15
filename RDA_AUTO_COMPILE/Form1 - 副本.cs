@@ -20,8 +20,9 @@ namespace RDA_AUTO_COMPILE
         }
 
 
-        public void button1_Click(object sender, EventArgs e)
+        public  void  button1_Click(object sender, EventArgs e)
         {
+            int i4_3Index = 0;
             string[] names = new string[] {
                 "#export CC=/usr/bin/gcc\n",
                 "#在编译之前要确定的东西，首先要制定好customer，logo，IR\n",
@@ -48,21 +49,20 @@ namespace RDA_AUTO_COMPILE
                 "\n",
                 "#需要改四 *\n",
                 "#iConfigNumber：是最大屏参数，若当前最大为14，则填15\n",
-                "iConfigNumber=",Get_Total_Panel_Number(),
+                "iConfigNumber=",textBox5.Text,
                 "\n\n",
                 "#需要改五 *\n",
                 "\n",
                 "#i4_3Index：是16:9的第一个屏参的编号，用于切换customize.h中的4:3,16:9\n",
-                "i4_3Index=",Get_4_3_Panel_Number(),
-                "\n\n########################\n",
+                "i4_3Index=",i4_3Index.ToString(),
+                "\n########################\n",
                 "#\n",
                 "# Generate Panel data\n",
                 "#\n",
                 "########################\n",
                 "#############################################   4:3   #########################################\n",
                 "\n",
-                "#注意panel_name中的x按照屏参名来写\n",
-                "#注意panel_n_UP中的x一律大写\n",
+                "#注意panel_name中的x一律大写\n",
                 "#注意resolution中的x一律小写\n",
                 "\n\n",
             };
@@ -148,8 +148,6 @@ namespace RDA_AUTO_COMPILE
                 "    #第三步修改mconfig.config	\n",
                 "    Panel_name =${ panel_name[$iBuildIndex]}\n",
                 "    Panel_name_1 =${ panel_name[$iBuildIndex - 1]}\n",
-                "    Panel_n_UP=${panel_n_UP[$iBuildIndex]}\n",
-                "    Panel_n_UP_1=${panel_n_UP[$iBuildIndex-1]}\n",                      
                 "    Resolution =${ resolution[$iBuildIndex]}\n",
                 "    Resolution_1 =${ resolution[$iBuildIndex - 1]}\n",
                 "    OutBinPath =${ OUT_BIN_PATH}/$Panel_name\n",
@@ -162,7 +160,6 @@ namespace RDA_AUTO_COMPILE
                 "        #echo \"[Panel_name=$Panel_name]\"\n",
                 "        #echo \"[Panel_name_1=$Panel_name_1]\"\n",
                 "        sed - i \"s/$Panel_name_1/$Panel_name/g\" mconfig.config\n",
-                "        sed -i \"s/$Panel_n_UP_1/$Panel_n_UP/g\" mconfig.config\n",               
                 "        sed - i \"s/$Resolution_1/$Resolution/g\" mconfig.config\n",
                 "    fi\n",
                 "    #第四步确定屏参,按照如下顺序编写正屏_JEIDA,倒屏_JEDIA,倒屏_VESA,正屏_VESA\n",
@@ -244,7 +241,6 @@ namespace RDA_AUTO_COMPILE
                 {
                     list.Add("# " + s + "\n");
                     list.Add("panel_name[" + a + "]=" + s + "\n");
-                    list.Add("panel_n_UP[" + a + "]=" + s.ToUpper() + "\n");
                     //查找本行的字符串中有没有_，没有就跳过
                     int x = s.IndexOf("_");
                     if (x == -1) continue;
@@ -266,9 +262,7 @@ namespace RDA_AUTO_COMPILE
                     list.Add("resolution[" + a + "]=" + sArray[1].ToLower().ToString() + "\n\n");
                     a++;
                 }
-
-                label17.Text = a.ToString();
-
+                i4_3Index = a;
                 foreach (string s in names1)
                 {
                     list.Add(s);
@@ -278,7 +272,6 @@ namespace RDA_AUTO_COMPILE
                 {
                     list.Add("# " + s + "\n");
                     list.Add("panel_name[" + a + "]=" + s + "\n");
-                    list.Add("panel_n_UP[" + a + "]=" + s.ToUpper() + "\n");
                     //查找本行的字符串中有没有_，没有就跳过
                     int x = s.IndexOf("_");
                     if (x == -1) continue;
@@ -301,9 +294,7 @@ namespace RDA_AUTO_COMPILE
                     list.Add("resolution[" + a + "]=" + sArray[1].ToLower().ToString() + "\n\n");
                     a++;
                 }
-
-                label18.Text = a.ToString();
-
+                textBox5.Text = a.ToString();
                 foreach (string s in names2)
                 {
                     list.Add(s);
@@ -313,7 +304,7 @@ namespace RDA_AUTO_COMPILE
                     sw.Write(s);
                 }
             }
-        }
+    }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -322,29 +313,6 @@ namespace RDA_AUTO_COMPILE
             HP.SetShowHelp(this, true);
         }
 
-        public String Get_Total_Panel_Number()
-        {
-            int a = 0;
-            foreach (String s in richTextBox1.Lines)
-            {
-                a++;
-            }
-            foreach (String s in richTextBox2.Lines)
-            {
-                a++;
-            }
-            label18.Text = a.ToString();
-            return label18.Text;
-        }
-        public String Get_4_3_Panel_Number()
-        {
-            int a = 0;
-            foreach (String s in richTextBox1.Lines)
-            {
-                a++;
-            }
-            label17.Text = a.ToString();
-            return label17.Text;
-        }
+
     }
 }
