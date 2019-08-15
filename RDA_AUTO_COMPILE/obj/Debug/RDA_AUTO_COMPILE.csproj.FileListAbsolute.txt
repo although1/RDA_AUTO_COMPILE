@@ -1,0 +1,9 @@
+E:\C++Java\C++\mof\RDA_AUTO_COMPILE\RDA_AUTO_COMPILE\bin\Debug\RDA_AUTO_COMPILE.exe.config
+E:\C++Java\C++\mof\RDA_AUTO_COMPILE\RDA_AUTO_COMPILE\bin\Debug\RDA_AUTO_COMPILE.exe
+E:\C++Java\C++\mof\RDA_AUTO_COMPILE\RDA_AUTO_COMPILE\bin\Debug\RDA_AUTO_COMPILE.pdb
+E:\C++Java\C++\mof\RDA_AUTO_COMPILE\RDA_AUTO_COMPILE\obj\Debug\RDA_AUTO_COMPILE.csprojResolveAssemblyReference.cache
+E:\C++Java\C++\mof\RDA_AUTO_COMPILE\RDA_AUTO_COMPILE\obj\Debug\RDA_AUTO_COMPILE.Form1.resources
+E:\C++Java\C++\mof\RDA_AUTO_COMPILE\RDA_AUTO_COMPILE\obj\Debug\RDA_AUTO_COMPILE.Properties.Resources.resources
+E:\C++Java\C++\mof\RDA_AUTO_COMPILE\RDA_AUTO_COMPILE\obj\Debug\RDA_AUTO_COMPILE.csproj.GenerateResource.Cache
+E:\C++Java\C++\mof\RDA_AUTO_COMPILE\RDA_AUTO_COMPILE\obj\Debug\RDA_AUTO_COMPILE.exe
+E:\C++Java\C++\mof\RDA_AUTO_COMPILE\RDA_AUTO_COMPILE\obj\Debug\RDA_AUTO_COMPILE.pdb
