@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -28,7 +29,7 @@ namespace RDA_AUTO_COMPILE
                 "#最后本脚本一共有七处需要手动修改，有些可以不改，加了*的是必改\n",
                 "#在编译之前要先生成存放软件的目录，请先看‘需要改一’\n",
                 "\n",
-                "#需要改一\n",
+                "#需要改一 \n",
                 "#OUT_BIN_PATH：这个是生成在根目录的文件夹，里面存放软件，可以不改\n",
                 "OUT_BIN_PATH=./YDG_SOFTWARE\n",
                 "\n",
@@ -63,7 +64,7 @@ namespace RDA_AUTO_COMPILE
                 "#注意panel_name中的x按照屏参名来写\n",
                 "#注意panel_n_UP中的x一律大写\n",
                 "#注意resolution中的x一律小写\n",
-                "\n\n",
+                "\n",
             };
             string[] names1 = new string[] {
                 "#############################################   16:9   #########################################\n\n",
@@ -88,16 +89,16 @@ namespace RDA_AUTO_COMPILE
                 "\n",
                 "while [ \"$iBuildIndex1\" != \"$iConfigNumber\" ]\n",
                 "do	\n",
-                "    Res=${resolution[$iBuildIndex1]}\n",
-                "    icc=$(($iConfigNumber-1))\n",
-                "    if [ \"$Res\"x = \"1440x900\"x ]\n",
-                "    then\n",
-                "        if [ \"$iBuildIndex1\" != \"$icc\" ]\n",
+                "        Res=${resolution[$iBuildIndex1]}\n",
+                "        icc=$(($iConfigNumber-1))\n",
+                "        if [ \"$Res\"x = \"1440x900\"x ]\n",
                 "        then\n",
-                "        error_exit \"1440x900应该放在最后一个编译 \"\n",
+                "        if [ \"$iBuildIndex1\" != \"$icc\" ]\n",
+                "                then\n",
+                "                error_exit \"1440x900应该放在最后一个编译 \"\n",
+                "                fi\n",
                 "        fi\n",
-                "    fi\n",
-                "    iBuildIndex1=$(($iBuildIndex1+1))\n",
+                "        iBuildIndex1=$(($iBuildIndex1+1))\n",
                 "done\n",
                 "\n",
                 "echo \"====================================================\"\n",
@@ -111,124 +112,124 @@ namespace RDA_AUTO_COMPILE
                 "\n",
                 "rm -v -rf ${OUT_BIN_PATH}\n",
                 "mkdir -v ${OUT_BIN_PATH}\n",
-                "while [\"$iBuildIndex2\" != \"$iConfigNumber\"]\n",
+                "while [ \"$iBuildIndex2\" != \"$iConfigNumber\" ]\n",
                 "do\n",
-                "   Panel_name =${ panel_name[$iBuildIndex2]}\n",
-                "   OutBinPath =${ OUT_BIN_PATH}/$Panel_name\n",
-                "   JEDIA = \"",textBox7.Text,"\"$Panel_name\"",textBox8.Text,"\"\n",
-                "   MIRROR_JEDIA = \"",textBox7.Text,"\"$Panel_name\"",textBox9.Text,"\"\n",
-                "   MIRROR_VESA = \"",textBox7.Text,"\"$Panel_name\"",textBox10.Text,"\"\n",
-                "   VESA = \"",textBox7.Text,"\"$Panel_name\"",textBox11.Text,"\"\n",
+                "       Panel_name=${panel_name[$iBuildIndex2]}\n",
+                "       OutBinPath=${OUT_BIN_PATH}/$Panel_name\n",
+                "       JEDIA=\"",textBox7.Text,"\"$Panel_name\"",textBox8.Text,"\"\n",
+                "       MIRROR_JEDIA=\"",textBox7.Text,"\"$Panel_name\"",textBox9.Text,"\"\n",
+                "       MIRROR_VESA=\"",textBox7.Text,"\"$Panel_name\"",textBox10.Text,"\"\n",
+                "       VESA=\"",textBox7.Text,"\"$Panel_name\"",textBox11.Text,"\"\n",
                 "\n",
-                "   mkdir - v $OutBinPath\n",
-                "   mkdir - v $OutBinPath /$JEDIA\n",
-                "   mkdir - v $OutBinPath /$MIRROR_JEDIA\n",
-                "   mkdir - v $OutBinPath /$MIRROR_VESA\n",
-                "   mkdir - v $OutBinPath /$VESA\n",
-                "   iBuildIndex2 =$(($iBuildIndex2 + 1))\n",
-                "done\n",
+                "   mkdir -v $OutBinPath\n",
+                "   mkdir -v $OutBinPath/$JEDIA\n",
+                "   mkdir -v $OutBinPath/$MIRROR_JEDIA\n",
+                "   mkdir -v $OutBinPath/$MIRROR_VESA\n",
+                "   mkdir -v $OutBinPath/$VESA\n",
+                "   iBuildIndex2=$(($iBuildIndex2+1))\n",
+                "done\n\n",
                 "chmod -R 777 ${OUT_BIN_PATH}\n",
                 "\n",
-                "while [\"$iBuildIndex\" != \"$iConfigNumber\"]\n",
+                "while [ \"$iBuildIndex\" != \"$iConfigNumber\" ]\n",
                 "do\n",
                 "    echo \"-----------------------------------------\"\n",
                 "    echo \"[iBuildIndex=$iBuildIndex]\"\n",
                 "\n",
                 "    #第二步，查看customer是4:3还是16:9,\n",
                 "    # -lt:<      -gt:>       -ge:>=      -le:<=     -eq :==\n",
-                "    cd ~/$WORK_PATH / aps / customer / s2tek / sub_customer / s2tek / s2tek\n",
+                "    cd ~/$WORK_PATH/aps/customer/s2tek/sub_customer/s2tek/s2tek\n",
                 "    pwd\n",
                 "\n",
-                "    if [ $iBuildIndex - eq $i4_3Index]\n",
+                "    if [ $iBuildIndex -eq $i4_3Index ]\n",
                 "    then\n",
-                "        sed - i \"s!$C4_3COSTOMER_OPEN!$C4_3COSTOMER_CLOSE!g\" customize.h\n",
-                "        sed - i \"s!$C16_9COSTOMER_CLOSE!$C16_9COSTOMER_OPEN!g\" customize.h\n",
+                "        sed -i \"s!$C4_3COSTOMER_OPEN!$C4_3COSTOMER_CLOSE!g\" customize.h\n",
+                "        sed -i \"s!$C16_9COSTOMER_CLOSE!$C16_9COSTOMER_OPEN!g\" customize.h\n",
                 "     fi\n",
                 "    #第三步修改mconfig.config	\n",
-                "    Panel_name =${ panel_name[$iBuildIndex]}\n",
-                "    Panel_name_1 =${ panel_name[$iBuildIndex - 1]}\n",
+                "    Panel_name=${panel_name[$iBuildIndex]}\n",
+                "    Panel_name_1=${panel_name[$iBuildIndex-1]}\n",
                 "    Panel_n_UP=${panel_n_UP[$iBuildIndex]}\n",
                 "    Panel_n_UP_1=${panel_n_UP[$iBuildIndex-1]}\n",                      
-                "    Resolution =${ resolution[$iBuildIndex]}\n",
-                "    Resolution_1 =${ resolution[$iBuildIndex - 1]}\n",
-                "    OutBinPath =${ OUT_BIN_PATH}/$Panel_name\n",
-                "    cd ~/$WORK_PATH /\n",
+                "    Resolution=${resolution[$iBuildIndex]}\n",
+                "    Resolution_1=${resolution[$iBuildIndex-1]}\n",
+                "    OutBinPath=${OUT_BIN_PATH}/$Panel_name\n",
+                "    cd ~/$WORK_PATH/\n",
                 "    pwd\n",
                 "\n",
-                "   if [ $iBuildIndex - gt 0] \n",
-                "    then\n",
-                "        echo \"修改mconfig.config\"\n",
-                "        #echo \"[Panel_name=$Panel_name]\"\n",
-                "        #echo \"[Panel_name_1=$Panel_name_1]\"\n",
-                "        sed - i \"s/$Panel_name_1/$Panel_name/g\" mconfig.config\n",
-                "        sed -i \"s/$Panel_n_UP_1/$Panel_n_UP/g\" mconfig.config\n",               
-                "        sed - i \"s/$Resolution_1/$Resolution/g\" mconfig.config\n",
-                "    fi\n",
-                "    #第四步确定屏参,按照如下顺序编写正屏_JEIDA,倒屏_JEDIA,倒屏_VESA,正屏_VESA\n",
-                "    #并且要把编好的软件放到对应的文件夹\n",
-                "    # Get panel name\n",
-                "\n",
-                "    echo \"Panel_name=$Panel_name\"\n",
-                "    iIndex = 0\n",
-                "    PANEL_INVERT_0 = \"#define	PANEL_INVERT	0\"\n",
-                "    PANEL_INVERT_1 = \"#define	PANEL_INVERT	1\"\n",
-                "    PANEL_LVDS_TYPE_0 = \"#define	PANEL_LVDS_TYPE	 0\"\n",
-                "    PANEL_LVDS_TYPE_2 = \"#define	PANEL_LVDS_TYPE	 2\"\n",
-                "#需要改七*\n",
-                "#可以直接复制‘需要改六’的JEIDA...   此处的作用的把编好的软件放到对应文件夹\n",
-                "   JEDIA = \"",textBox7.Text,"\"$Panel_name\"",textBox8.Text,"\"\n",
-                "   MIRROR_JEDIA = \"",textBox7.Text,"\"$Panel_name\"",textBox9.Text,"\"\n",
-                "   MIRROR_VESA = \"",textBox7.Text,"\"$Panel_name\"",textBox10.Text,"\"\n",
-                "   VESA = \"",textBox7.Text,"\"$Panel_name\"",textBox11.Text,"\"\n",
-                "   while [ $iIndex - le 4]\n",
-                "   do\n",
-                "       cd ~/$WORK_PATH / aps / customer / s2tek /public/panel/${Panel_name}\n",
-                "       pwd\n",
-                "\n",
-                "   case ${iIndex} in\n",
-                "       0)\n",
-                "           echo 'This is 正屏_JEDIA'\n",
-                "           sed -i \"/PANEL_INVERT/c$PANEL_INVERT_0\"  panel_setting.h\n",
-                "           sed -i \"/PANEL_LVDS_TYPE/c$PANEL_LVDS_TYPE_0\"  panel_setting.h\n",
-                "           cd ~/$WORK_PATH\n",
-                "           make clean ; make -j\n",
-                "           cp -v./mergedir/$OUT_BIN_NAME  $OutBinPath/$JEDIA/  || error_exit \"cannot copy *.bin file to directory\"\n",
-                "       ;;\n",
-                "       1)\n",
-                "           echo 'This is 倒屏_JEDIA'\n",
-                "           sed -i \"/PANEL_INVERT/c$PANEL_INVERT_1\" panel_setting.h\n",
-                "           sed -i \"/PANEL_LVDS_TYPE/c$PANEL_LVDS_TYPE_0\" panel_setting.h\n",
-                "           cd ~/$WORK_PATH\n",
-                "           make -j\n",
-                "           cp -v./mergedir/$OUT_BIN_NAME  $OutBinPath/$MIRROR_JEDIA/ || error_exit \"cannot copy *.bin file to directory\"\n",
-                "       ;;\n",
-                "       2)\n",
-                "           echo 'This is 倒屏_VESA'\n",
-                "           sed -i \"/PANEL_INVERT/c$PANEL_INVERT_1\" panel_setting.h\n",
-                "           sed -i \"/PANEL_LVDS_TYPE/c$PANEL_LVDS_TYPE_2\" panel_setting.h\n",
-                "           cd ~/$WORK_PATH\n",
-                "           make -j\n",
-                "           cp -v./mergedir/$OUT_BIN_NAME  $OutBinPath/$MIRROR_VESA/ || error_exit \"cannot copy *.bin file to directory\"\n",
-                "       ;;\n",
-                "       3)\n",
-                "           echo 'This is 正屏_VESA'\n",
-                "           sed -i \"/PANEL_INVERT/c$PANEL_INVERT_0\" panel_setting.h\n",
-                "           sed -i \"/PANEL_LVDS_TYPE/c$PANEL_LVDS_TYPE_2\" panel_setting.h\n",
-                "           cd ~/$WORK_PATH\n",
-                "           make -j\n",
-                "           cp -v./mergedir/$OUT_BIN_NAME  $OutBinPath/$VESA/ || error_exit \"cannot copy *.bin file to directory\"\n",
-                "       ;;\n",
-                "       *)\n",
-                "           echo '编译完成'\n",
-                "       ;;\n",
-                "   esac\n",
-                "   iIndex =$(($iIndex+1))\n",
-                "   done\n",
-                "\n",
-                "   iBuildIndex =$(($iBuildIndex+1))\n",
-                "done\n",
-                "\n",
-                "#cd configs/melody\n",
+               "        if [ $iBuildIndex -gt 0 ]\n",
+               "        then\n",
+               "                echo \"修改mconfig.config\"\n",
+               "                #echo \"[Panel_name=$Panel_name]\"\n",
+               "                #echo \"[Panel_name_1=$Panel_name_1]\"\n",
+               "                sed -i \"s/$Panel_name_1/$Panel_name/g\" mconfig.config\n",
+               "                sed -i \"s/$Panel_n_UP_1/$Panel_n_UP/g\" mconfig.config\n",               
+               "                sed -i \"s/$Resolution_1/$Resolution/g\" mconfig.config\n",
+               "        fi\n",
+               "        #第四步确定屏参,按照如下顺序编写正屏_JEIDA,倒屏_JEDIA,倒屏_VESA,正屏_VESA\n",
+               "        #并且要把编好的软件放到对应的文件夹\n",
+               "        # Get panel name\n",
+               "\n",
+               "    echo \"Panel_name=$Panel_name\"\n",
+               "    iIndex=0\n",
+               "    PANEL_INVERT_0=\"#define	PANEL_INVERT	0\"\n",
+               "    PANEL_INVERT_1=\"#define	PANEL_INVERT	1\"\n",
+               "    PANEL_LVDS_TYPE_0=\"#define	PANEL_LVDS_TYPE	 0\"\n",
+               "    PANEL_LVDS_TYPE_2=\"#define	PANEL_LVDS_TYPE	 2\"\n",
+               "#需要改七*\n",
+               "#可以直接复制‘需要改六’的JEIDA...   此处的作用的把编好的软件放到对应文件夹\n",
+               "    JEDIA=\"",textBox7.Text,"\"$Panel_name\"",textBox8.Text,"\"\n",
+               "    MIRROR_JEDIA=\"",textBox7.Text,"\"$Panel_name\"",textBox9.Text,"\"\n",
+               "    MIRROR_VESA=\"",textBox7.Text,"\"$Panel_name\"",textBox10.Text,"\"\n",
+               "    VESA=\"",textBox7.Text,"\"$Panel_name\"",textBox11.Text,"\"\n",
+               "    while [ $iIndex -le 4 ]\n",
+               "    do\n",
+               "                cd ~/$WORK_PATH/aps/customer/s2tek/public/panel/${Panel_name}\n",
+               "                pwd\n",
+               "\n",
+               "    case ${iIndex} in\n",
+               "        0)\n",
+               "           echo 'This is 正屏_JEDIA'\n",
+               "           sed -i \"/PANEL_INVERT/c$PANEL_INVERT_0\"  panel_setting.h\n",
+               "           sed -i \"/PANEL_LVDS_TYPE/c$PANEL_LVDS_TYPE_0\"  panel_setting.h\n",
+               "           cd ~/$WORK_PATH\n",
+               "           make clean ; make -j\n",
+               "           cp -v  ./mergedir/$OUT_BIN_NAME  $OutBinPath/$JEDIA/  ||  error_exit \"cannot copy *.bin file to directory\"\n",
+               "       ;;\n",
+               "       1)\n",
+               "            echo 'This is 倒屏_JEDIA'\n",
+               "            sed -i \"/PANEL_INVERT/c$PANEL_INVERT_1\" panel_setting.h\n",
+               "            sed -i \"/PANEL_LVDS_TYPE/c$PANEL_LVDS_TYPE_0\" panel_setting.h\n",
+               "            cd ~/$WORK_PATH\n",
+               "            make -j\n",
+               "            cp -v  ./mergedir/$OUT_BIN_NAME  $OutBinPath/$MIRROR_JEDIA/ || error_exit \"cannot copy *.bin file to directory\"\n",
+               "        ;;\n",
+               "        2)\n",
+               "            echo 'This is 倒屏_VESA'\n",
+               "            sed -i \"/PANEL_INVERT/c$PANEL_INVERT_1\" panel_setting.h\n",
+               "            sed -i \"/PANEL_LVDS_TYPE/c$PANEL_LVDS_TYPE_2\" panel_setting.h\n",
+               "            cd ~/$WORK_PATH\n",
+               "            make -j\n",
+               "            cp -v  ./mergedir/$OUT_BIN_NAME  $OutBinPath/$MIRROR_VESA/ || error_exit \"cannot copy *.bin file to directory\"\n",
+               "        ;;\n",
+               "        3)\n",
+               "            echo 'This is 正屏_VESA'\n",
+               "            sed -i \"/PANEL_INVERT/c$PANEL_INVERT_0\" panel_setting.h\n",
+               "            sed -i \"/PANEL_LVDS_TYPE/c$PANEL_LVDS_TYPE_2\" panel_setting.h\n",
+               "            cd ~/$WORK_PATH\n",
+               "            make -j\n",
+               "            cp -v  ./mergedir/$OUT_BIN_NAME  $OutBinPath/$VESA/ || error_exit \"cannot copy *.bin file to directory\"\n",
+               "        ;;\n",
+               "        *)\n",
+               "            echo '编译完成'\n",
+               "        ;;\n",
+               "    esac\n",
+               "    iIndex=$(($iIndex+1))\n",
+               "    done\n",
+               "\n",
+               "    iBuildIndex=$(($iBuildIndex+1))\n",
+               "done\n",
+               "\n",
+               "#cd configs/melody",
             };
             using (StreamWriter sw = new StreamWriter("ydg_make_all_bin.sh"))
             {
@@ -320,6 +321,17 @@ namespace RDA_AUTO_COMPILE
             //HP.HelpNamespace = ("help.txt");
             //HP.SetShowHelp(this, true);
             //Help.ShowHelp(this, HP.HelpNamespace);
+            //textBox1.Text = ConfigurationManager.AppSettings["WORK PATH"];
+            //textBox2.Text = ConfigurationManager.AppSettings["OUT BIN NAME"];
+            //textBox3.Text = ConfigurationManager.AppSettings["CUSTOMER 4 3"];
+            //textBox4.Text = ConfigurationManager.AppSettings["CUSTOMER 16 9"];
+            //richTextBox1.Text = ConfigurationManager.AppSettings["PANEL 4 3"];
+            //richTextBox2.Text = ConfigurationManager.AppSettings["PANEL 16 9"];
+            //textBox7.Text = ConfigurationManager.AppSettings["CUSTOMER HEAD"];
+            //textBox8.Text = ConfigurationManager.AppSettings["JEDIA"];
+            //textBox9.Text = ConfigurationManager.AppSettings["MIRROR JEDIA"];
+            //textBox10.Text = ConfigurationManager.AppSettings["MIRROR VESA"];
+            //textBox11.Text = ConfigurationManager.AppSettings["VESA"];
         }
 
         public String Get_Total_Panel_Number()
@@ -374,5 +386,42 @@ namespace RDA_AUTO_COMPILE
 
             
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Configuration cfa = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            //cfa.AppSettings.Settings["WORK PATH"].Value = textBox1.Text;
+            //cfa.AppSettings.Settings["OUT BIN NAME"].Value = textBox2.Text;
+            //cfa.AppSettings.Settings["CUSTOMER 4 3"].Value = textBox3.Text;
+            //cfa.AppSettings.Settings["CUSTOMER 16 9"].Value = textBox4.Text;
+            //cfa.AppSettings.Settings["PANEL 4 3"].Value = richTextBox1.Text;
+            //cfa.AppSettings.Settings["PANEL 16 9"].Value = richTextBox2.Text;
+            //cfa.AppSettings.Settings["CUSTOMER HEAD"].Value = textBox7.Text;
+            //cfa.AppSettings.Settings["JEDIA"].Value = textBox8.Text;
+            //cfa.AppSettings.Settings["MIRROR JEDIA"].Value = textBox9.Text;
+            //cfa.AppSettings.Settings["MIRROR VESA"].Value = textBox10.Text;
+            //cfa.AppSettings.Settings["VESA"].Value = textBox11.Text;
+
+            //cfa.Save();
+        }
+
+        //private void label20_Click(object sender, EventArgs e)
+        //{
+        //    Configuration cfa = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        //    cfa.AppSettings.Settings["WORK PATH"].Value = textBox1.Text;
+        //    cfa.AppSettings.Settings["OUT BIN NAME"].Value = textBox2.Text;
+        //    cfa.AppSettings.Settings["CUSTOMER 4 3"].Value = textBox3.Text;
+        //    cfa.AppSettings.Settings["CUSTOMER 16 9"].Value = textBox4.Text;
+        //    cfa.AppSettings.Settings["PANEL 4 3"].Value = richTextBox1.Text;
+        //    cfa.AppSettings.Settings["PANEL 16 9"].Value = richTextBox2.Text;
+        //    cfa.AppSettings.Settings["CUSTOMER HEAD"].Value = textBox7.Text;
+        //    cfa.AppSettings.Settings["JEDIA"].Value = textBox8.Text;
+        //    cfa.AppSettings.Settings["MIRROR JEDIA"].Value = textBox9.Text;
+        //    cfa.AppSettings.Settings["MIRROR VESA"].Value = textBox10.Text;
+        //    cfa.AppSettings.Settings["VESA"].Value = textBox11.Text;
+
+        //    cfa.Save();
+        //    MessageBox.Show("保存成功");
+        //}
     }
 }
