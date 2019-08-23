@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -240,6 +241,9 @@ namespace RDA_AUTO_COMPILE
                     list.Add(s);
 
                 }
+                richTextBox1.Text = richTextBox1.Text.TrimEnd((char[])"\r\n".ToCharArray());
+                //richTextBox1.Text = Regex.Replace(richTextBox1.Text, @"\n...", "\n");
+                
                 foreach (String s in richTextBox1.Lines)
                 {
                     list.Add("# " + s + "\n");
@@ -263,7 +267,8 @@ namespace RDA_AUTO_COMPILE
                     {
                         sArray = sArray[1].ToString().Split(new char[] { '_' }, 2);
                     }
-                    list.Add("resolution[" + a + "]=" + sArray[1].ToLower().ToString() + "\n\n");
+                    if (s != "\0")
+                        list.Add("resolution[" + a + "]=" + sArray[1].ToLower().ToString() + "\n\n");
                     a++;
                 }
 
@@ -274,11 +279,16 @@ namespace RDA_AUTO_COMPILE
                     list.Add(s);
 
                 }
+                richTextBox2.Text = richTextBox2.Text.TrimEnd((char[])"\r\n".ToCharArray());
+                //richTextBox2.Text = Regex.Replace(richTextBox2.Text, @"\n...", "\n");
+
                 foreach (String s in richTextBox2.Lines)
                 {
+                    if (s == "\n") continue;
                     list.Add("# " + s + "\n");
                     list.Add("panel_name[" + a + "]=" + s + "\n");
                     list.Add("panel_n_UP[" + a + "]=" + s.ToUpper() + "\n");
+
                     //查找本行的字符串中有没有_，没有就跳过
                     int x = s.IndexOf("_");
                     if (x == -1) continue;
@@ -298,7 +308,8 @@ namespace RDA_AUTO_COMPILE
                     {
                         sArray = sArray[1].ToString().Split(new char[] { '_' }, 2);
                     }
-                    list.Add("resolution[" + a + "]=" + sArray[1].ToLower().ToString() + "\n\n");
+                    if (s != "\0")
+                        list.Add("resolution[" + a + "]=" + sArray[1].ToLower().ToString() + "\n\n");
                     a++;
                 }
 
